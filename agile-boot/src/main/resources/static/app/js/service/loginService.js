@@ -1,15 +1,15 @@
 app.service('LoginService', function($http) {
 
 
-	this.login = function(callback, errorCallback) {
+	this.login = function(user, callback, errorCallback) {
 		var LOGIN_URL = "http://localhost:8080/oauth/token";
 
 		var postData = {
 			grant_type: "password",
 			client_id: "restapp",
 			client_secret: "restapp",
-			username: "admin",
-			password: "password"
+			username: user.name,
+			password: user.password
 		};
 
 		$http.post(LOGIN_URL, postData, {

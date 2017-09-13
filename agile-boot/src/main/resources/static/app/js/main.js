@@ -6,6 +6,7 @@ baseUrl = "http://localhost:8080";
 path =    "";
 var access_token = "";
 var headers = {};
+var username = "";
 
 
 /**
@@ -24,11 +25,11 @@ var app = angular.module('webApp', [
 app.config(['$routeProvider', function ($routeProvider) {
   $routeProvider
     // Home
-    .when("/", {templateUrl: "partials/login.html", controller: "PageCtrl"})
+    .when("/", {templateUrl: "partials/login.html", controller: "loginCtrl"})
     // Pages
-    .when("/iteration", {templateUrl: "partials/iteration.html", controller: "PageCtrl"})
-    .when("/userstory", {templateUrl: "partials/userstory.html", controller: "PageCtrl"})
-    .when("/users", {templateUrl: "partials/users.html", controller: "PageCtrl"})
+    .when("/iteration", {templateUrl: "partials/iteration.html", controller: "iterationCtrl"})
+    .when("/userstory", {templateUrl: "partials/userstory.html", controller: "userstoryCtrl"})
+    .when("/users", {templateUrl: "partials/users.html", controller: "userCtrl"})
  
     // Blog
 
