@@ -2,7 +2,7 @@ app.service('LoginService', function($http) {
 
 
 	this.login = function(user, callback, errorCallback) {
-		var LOGIN_URL = "http://localhost:8080/oauth/token";
+		var LOGIN_URL = baseUrl+"/oauth/token";
 
 		var postData = {
 			grant_type: "password",
