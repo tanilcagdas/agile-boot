@@ -2,7 +2,7 @@ var baseUrl = window.location.origin;
 var path = window.location.pathname.substring(0, window.location.pathname
 		.indexOf("/", 2));
 
-baseUrl = "http://localhost:8080";
+//baseUrl = "http://localhost:8080";
 path =    "";
 var access_token = "";
 var headers = {};
