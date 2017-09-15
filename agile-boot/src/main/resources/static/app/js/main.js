@@ -22,7 +22,7 @@ var app = angular.module('webApp', [
 /**
  * Configure the Routes
  */
-app.config(['$routeProvider', function ($routeProvider) {
+app.config(['$routeProvider','$httpProvider', function ($routeProvider, $httpProvider) {
   $routeProvider
     // Home
     .when("/", {templateUrl: "partials/login.html", controller: "loginCtrl"})
@@ -35,6 +35,8 @@ app.config(['$routeProvider', function ($routeProvider) {
 
     // else 404
     .otherwise("/404", {templateUrl: "partials/404.html", controller: "PageCtrl"});
+  
+  $httpProvider.interceptors.push('myHttpInterceptor');
 }]);
 
 /**
@@ -66,6 +68,61 @@ app.controller('PageCtrl', function (/* $scope, $location, $http */) {
 //    selector: "a[data-toggle=tooltip]"
 //  })
 });
+
+
+//register the interceptor as a service
+//app.factory('myHttpInterceptor', function($q, dependency1, dependency2) {
+app.factory('myHttpInterceptor', function($q) {
+  return {
+    // optional method
+    'request': function(config) {
+      // do something on success
+      return config;
+    },
+
+    // optional method
+   'requestError': function(rejection) {
+      // do something on error
+      if (canRecover(rejection)) {
+        return responseOrNewPromise
+      }
+      return $q.reject(rejection);
+    },
+
+
+
+    // optional method
+    'response': function(response) {
+      // do something on success
+      return response;
+    },
+
+    // optional method
+   'responseError': function(rejection) {
+      // do something on error
+      if (canRecover(rejection)) {
+        return responseOrNewPromise
+      }
+      return $q.reject(rejection);
+    }
+  };
+});
+
+//$httpProvider.interceptors.push('myHttpInterceptor');
+//
+//
+//// alternatively, register the interceptor via an anonymous factory
+//$httpProvider.interceptors.push(function($q, dependency1, dependency2) {
+//  return {
+//   'request': function(config) {
+//       // same as above
+//    },
+//
+//    'response': function(response) {
+//       // same as above
+//    }
+//  };
+//});
 
 
 
